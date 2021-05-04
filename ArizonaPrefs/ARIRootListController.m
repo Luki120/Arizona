@@ -74,7 +74,7 @@ return _specifiers;
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"3.2";
+    self.titleLabel.text = @"3.3";
     if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark) self.titleLabel.textColor = [UIColor whiteColor];
 	else if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight) self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -182,7 +182,7 @@ return _specifiers;
 
     NSString *key = [specifier propertyForKey:@"key"];
 
-    if([key isEqualToString:@"poggers"]) {
+    if([key isEqualToString:@"yes"]) {
         
         if (![value boolValue]) {
             [self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:YES];

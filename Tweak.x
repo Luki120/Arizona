@@ -25,7 +25,7 @@ static NSString *plistPath = @"/var/mobile/Library/Preferences/com.luki.arizonap
 
 static BOOL lockGlyphPosition;
 static BOOL alternatePosition;
-static BOOL poggers;
+static BOOL yes;
 static int style;
 
 
@@ -43,7 +43,7 @@ static void loadWithoutAFuckingRespring() {
 
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
-    poggers = prefs[@"poggers"] ? [prefs[@"poggers"] boolValue] : NO;
+    yes = prefs[@"yes"] ? [prefs[@"yes"] boolValue] : NO;
     style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
     alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
     lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
@@ -71,18 +71,18 @@ static void loadWithoutAFuckingRespring() {
 	
     %orig;
 
-    if (poggers && style == 2) {
+    if (yes && style == 2) {
         %orig(1);
 
     }
 
-    else if(poggers && style == 1) {
+    else if(yes && style == 1) {
 
         %orig(0);
 
     }
 
-    else if(poggers && style == 0) {
+    else if(yes && style == 0) {
 
         %orig(-1);
 
@@ -181,7 +181,7 @@ static void loadWithoutAFuckingRespring() {
 
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
-    poggers = prefs[@"poggers"] ? [prefs[@"poggers"] boolValue] : NO;
+    yes = prefs[@"yes"] ? [prefs[@"yes"] boolValue] : NO;
     style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
     alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
     lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
