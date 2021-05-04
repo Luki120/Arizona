@@ -69,7 +69,8 @@ static void loadWithoutAFuckingRespring() {
 
 -(void)setAlignmentPercent:(double)arg1 { // fixed positions
 
-	loadWithoutAFuckingRespring();
+
+    loadWithoutAFuckingRespring();
 	
     %orig;
 
@@ -160,8 +161,8 @@ static void loadWithoutAFuckingRespring() {
     [self updateLockGlyphPosition];
 
 
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLockGlyphPosition) name:@"glyphUpdated" object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLockGlyphPosition) name:@"glyphUpdated" object:nil];
 
 }
 
