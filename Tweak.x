@@ -41,6 +41,7 @@ CGFloat lockCoordinatesForY;
 
 static void loadWithoutAFuckingRespring() {
 
+
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
     yes = prefs[@"yes"] ? [prefs[@"yes"] boolValue] : NO;
@@ -53,6 +54,7 @@ static void loadWithoutAFuckingRespring() {
     coordinatesForY = (float)yValue;
     lockCoordinatesForX = prefs[@"lockXValue"] ? [prefs[@"lockXValue"] intValue] : 1;
     lockCoordinatesForY = prefs[@"lockYValue"] ? [prefs[@"lockYValue"] intValue] : 1;
+
 
 }
 
@@ -72,19 +74,20 @@ static void loadWithoutAFuckingRespring() {
     %orig;
 
     if (yes && style == 2) {
-        %orig(1);
+        
+        %orig(1); // right
 
     }
 
     else if(yes && style == 1) {
 
-        %orig(0);
+        %orig(0); // center
 
     }
 
     else if(yes && style == 0) {
 
-        %orig(-1);
+        %orig(-1); // left
 
     }
 }
