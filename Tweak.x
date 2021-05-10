@@ -8,7 +8,12 @@
 
 
 @interface SBUIProudLockIconView : UIView
--(void)updateLockGlyphPosition;
+- (void)updateLockGlyphPosition;
+@end
+
+
+@interface UIMorphingLabel : UILabel
+- (void)updateMorphingLabel;
 @end
 
 
@@ -23,6 +28,7 @@
 static NSString *plistPath = @"/var/mobile/Library/Preferences/com.luki.arizonaprefs.plist";
 
 
+static BOOL hideMorphingLabel;
 static BOOL lockGlyphPosition;
 static BOOL alternatePosition;
 static BOOL yes;
@@ -48,6 +54,7 @@ static void loadWithoutAFuckingRespring() {
     style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
     alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
     lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
+    hideMorphingLabel = prefs[@"hideMorphingLabel"] ? [prefs[@"hideMorphingLabel"] boolValue] : NO;
     int xValue = prefs[@"xValue"] ? [prefs[@"xValue"] intValue] : 1;
     coordinatesForX = (float)xValue;
     int yValue = prefs[@"yValue"] ? [prefs[@"yValue"] intValue] : 1;
@@ -67,7 +74,7 @@ static void loadWithoutAFuckingRespring() {
 %hook SBFLockScreenDateView
 
 
--(void)setAlignmentPercent:(double)arg1 { // fixed positions
+- (void)setAlignmentPercent:(double)arg1 { // fixed positions
 
 
     loadWithoutAFuckingRespring();
@@ -102,7 +109,7 @@ static void loadWithoutAFuckingRespring() {
 %hook SBFLockScreenDateView
 
 
--(void)setFrame:(CGRect)frame { // custom position
+- (void)setFrame:(CGRect)frame { // custom position
 
 
     if(alternatePosition) {
@@ -135,9 +142,11 @@ static void loadWithoutAFuckingRespring() {
 
 %hook SBUIProudLockIconView
 
+
 %new
 
--(void)updateLockGlyphPosition { // self explanatory
+
+- (void)updateLockGlyphPosition { // self explanatory
 
 
     loadWithoutAFuckingRespring();
@@ -155,7 +164,8 @@ static void loadWithoutAFuckingRespring() {
 }
 
 
--(void)didMoveToSuperview { // add notification observers
+- (void)didMoveToSuperview { // add notification observers
+
 
     %orig;
     [self updateLockGlyphPosition];
@@ -166,7 +176,8 @@ static void loadWithoutAFuckingRespring() {
 
 }
 
--(void)layoutSubviews { // ehh I don't like this either, but just updating a view.
+
+- (void)layoutSubviews { // ehh I don't like this either, but just updating a view.
 
 
     %orig;
@@ -174,6 +185,7 @@ static void loadWithoutAFuckingRespring() {
 
 
 }
+
 
 %end
 %end

@@ -11,7 +11,7 @@
 @end
 
 
-@interface ARIRootListController : PSListController
+@interface ArizonaRootListController : PSListController
 @property (nonatomic, retain) NSMutableDictionary *savedSpecifiers;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UIView *headerView;
@@ -25,7 +25,7 @@
 @end
 
 
-@interface ContributorsRootListController : PSListController
+@interface ArizonaContributorsRootListController : PSListController
 @end
 
 
