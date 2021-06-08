@@ -36,27 +36,41 @@ return _specifiers;
     [super reloadSpecifiers];
 
     if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-1"]] boolValue]) {
+
         [self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:NO];
         [self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:NO];
+
     }
+
+
     else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-1"]]) {
+
         [self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:NO];
         [self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:NO];
     
-    }  
-    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-2"]] boolValue]) {
-        [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:NO];
-    }
-    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]]) {
-        [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:NO];
     }
 
-    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-3"]] boolValue]) {
+
+    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-2"]] boolValue])
+
+        [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:NO];
+
+
+    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
+
+        [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:NO];
+
+
+    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-3"]] boolValue])
+
         [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:NO];
-    }
-    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]]) {
+
+
+    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
+
         [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:NO];
-    }
+
+
 }
 
 
@@ -64,6 +78,7 @@ return _specifiers;
 
     [super viewDidLoad];
     [self reloadSpecifiers];
+
     UIImage *banner = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/pogbanner.png"];
 	
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * banner.size.height / banner.size.width)];
@@ -91,7 +106,9 @@ return _specifiers;
     
 
     [self.headerView addSubview:self.headerImageView];
+
     [NSLayoutConstraint activateConstraints:@[
+
         [self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
         [self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
         [self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],   
@@ -104,6 +121,7 @@ return _specifiers;
         [self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
         [self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
         [self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+
     ]];
 
 }
@@ -133,7 +151,7 @@ return _specifiers;
 
     CGFloat offsetY = scrollView.contentOffset.y;
 
-    if (offsetY > 200) {
+    if (offsetY > 150) {
         [UIView animateWithDuration:0.2 animations:^{
             self.iconView.alpha = 1.0;
             self.titleLabel.alpha = 0.0;
@@ -186,35 +204,53 @@ return _specifiers;
 
     if([key isEqualToString:@"yes"]) {
         
+
         if (![value boolValue]) {
+
             [self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:YES];
             [self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:YES];
+
         }
+
+
         else if (![self containsSpecifier:self.savedSpecifiers[@"SegmentCell"]]) {
+
             [self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:YES];
             [self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:YES];
+
         }
+
     }
+
 
     if([key isEqualToString:@"alternatePosition"]) {
     
-        if (![value boolValue]) {
+
+        if (![value boolValue])
+
             [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:YES];
-        }
-        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]]) {
+
+
+        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
+
             [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:YES];
-        }
+
     }
+
 
     if([key isEqualToString:@"lockGlyphPosition"]) {
     
-        if (![value boolValue]) {
+
+        if (![value boolValue])
+
             [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:YES];
-        } 
-        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]]) {
+ 
+
+        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
+
             [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:YES];
-        }
     }
+
 }
 
 
