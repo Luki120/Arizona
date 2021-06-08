@@ -69,9 +69,9 @@
 		</array>
 		<key>validTitles</key>
 		<array>
-			<string>Left</string>
-			<string>Center</string>
 			<string>Right</string>
+			<string>Center</string>
+			<string>Left</string>
 		</array>
 		<key>id</key>
 		<string>SegmentCell</string>

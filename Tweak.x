@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+ #import <UIKit/UIKit.h>
 
 
 
@@ -9,11 +9,6 @@
 
 @interface SBUIProudLockIconView : UIView
 - (void)updateLockGlyphPosition;
-@end
-
-
-@interface UIMorphingLabel : UILabel
-- (void)updateMorphingLabel;
 @end
 
 
@@ -28,7 +23,6 @@
 static NSString *plistPath = @"/var/mobile/Library/Preferences/com.luki.arizonaprefs.plist";
 
 
-static BOOL hideMorphingLabel;
 static BOOL lockGlyphPosition;
 static BOOL alternatePosition;
 static BOOL yes;
@@ -54,7 +48,6 @@ static void loadWithoutAFuckingRespring() {
     style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
     alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
     lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
-    hideMorphingLabel = prefs[@"hideMorphingLabel"] ? [prefs[@"hideMorphingLabel"] boolValue] : NO;
     int xValue = prefs[@"xValue"] ? [prefs[@"xValue"] intValue] : 1;
     coordinatesForX = (float)xValue;
     int yValue = prefs[@"yValue"] ? [prefs[@"yValue"] intValue] : 1;
@@ -81,23 +74,33 @@ static void loadWithoutAFuckingRespring() {
 	
     %orig;
 
-    if (yes && style == 2) {
+
+    if(yes)
+
+
+        switch(style) {
+
+
+            case 0:
         
-        %orig(1); // right
+                %orig(1); // right
+                break;
 
-    }
 
-    else if(yes && style == 1) {
+            case 1:
 
-        %orig(0); // center
+                %orig(0); // center
+                break;
 
-    }
 
-    else if(yes && style == 0) {
+            case 2:
 
-        %orig(-1); // left
 
-    }
+                %orig(-1); // left
+                break;
+
+        }
+
 }
 
 
