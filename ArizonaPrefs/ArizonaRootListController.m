@@ -271,60 +271,6 @@ return _specifiers;
 }
 
 
-- (void)luki {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/Lukii120"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)wizard {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/RuntimeOverflow"] options:@{} completionHandler:nil];
-
-
-}
-
-
--(void)ben {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/BenOwl3"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)lacertosus {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/lacertosusdeus"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)miguelaka {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.reddit.com/user/Miguelaka95/"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)GCGamer {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/mrgcgamer"] options:@{} completionHandler:nil];
-
-
-}
-
-
 @end
 
 
