@@ -1,9 +1,9 @@
 Package: com.luki.arizona
 Name: Arizona
-Version: 4.0
+Version: 4.0.1
 Architecture: iphoneos-arm
 Description: ;)
 Maintainer: Luki
 Author: Luki
 Section: Tweaks
-Depends: mobilesubstrate, preferenceloader
+Depends: mobilesubstrate, preferenceloader, com.mrgcgamer.libgcuniversal

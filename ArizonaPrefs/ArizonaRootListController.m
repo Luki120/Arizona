@@ -91,7 +91,7 @@ return _specifiers;
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"4.0";
+    self.titleLabel.text = @"4.0.1";
     if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark) self.titleLabel.textColor = [UIColor whiteColor];
     else if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight) self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -197,6 +197,7 @@ return _specifiers;
     [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
     [settings setObject:value forKey:specifier.properties[@"key"]];
     [settings writeToFile:plistPath atomically:YES];
+    
     [NSDistributedNotificationCenter.defaultCenter postNotificationName:@"glyphUpdated" object:NULL];
     
 
