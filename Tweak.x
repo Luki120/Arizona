@@ -198,21 +198,7 @@ static void loadWithoutAFuckingRespring() {
 %ctor {
 
 
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
-    yes = prefs[@"yes"] ? [prefs[@"yes"] boolValue] : NO;
-    style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
-    alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
-    lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
-    int xValue = prefs[@"xValue"] ? [prefs[@"xValue"] intValue] : 1;
-    coordinatesForX = (float)xValue;
-    int yValue = prefs[@"yValue"] ? [prefs[@"yValue"] intValue] : 1;
-    coordinatesForY = (float)yValue;
-    int lockXValue = prefs[@"lockXValue"] ? [prefs[@"lockXValue"] intValue] : 1;
-    lockCoordinatesForX = (float)lockXValue;
-    int lockYValue = prefs[@"lockYValue"] ? [prefs[@"lockYValue"] intValue] : 1;
-    lockCoordinatesForY = (float)lockYValue;
-
+    loadWithoutAFuckingRespring();
 
     %init(Arizona);
 
