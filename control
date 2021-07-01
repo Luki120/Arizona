@@ -2,7 +2,7 @@ Package: com.luki.arizona
 Name: Arizona
 Version: 4.0.1
 Architecture: iphoneos-arm
-Description: ;)
+Description: Move the stock clock, date and lock glyph on the fly
 Maintainer: Luki
 Author: Luki
 Section: Tweaks
