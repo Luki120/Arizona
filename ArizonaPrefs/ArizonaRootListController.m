@@ -1,9 +1,7 @@
 #include "ArizonaRootListController.h"
 
 
-
-
-static NSString *plistPath = @"/var/mobile/Library/Preferences/com.luki.arizonaprefs.plist";
+static NSString *plistPath = @"/var/mobile/Library/Preferences/me.luki.arizonaprefs.plist";
 
 
 #define tint [UIColor colorWithRed: 0.02 green: 0.79 blue: 0.95 alpha: 1.00]
@@ -15,60 +13,64 @@ static NSString *plistPath = @"/var/mobile/Library/Preferences/com.luki.arizonap
 - (NSArray *)specifiers {
 
 
-    if (!_specifiers) {
-        _specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
-        NSArray *chosenIDs = @[@"GroupCell-1", @"SegmentCell", @"GroupCell-3", @"XAxisID", @"XValueID", @"YAxisID", @"YValueID", @"GroupCell-4", @"LockXAxis", @"LockXValueID", @"LockYAxis", @"LockYValueID"];
-        self.savedSpecifiers = (self.savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
-        for(PSSpecifier *specifier in _specifiers) {
-            if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]) {
-                [self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
-            }
-        }
-    }
+	if (!_specifiers) {
 
-return _specifiers;
+		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
+
+		NSArray *chosenIDs = @[@"GroupCell-1", @"SegmentCell", @"GroupCell-3", @"XAxisID", @"XValueID", @"YAxisID", @"YValueID", @"GroupCell-4", @"LockXAxis", @"LockXValueID", @"LockYAxis", @"LockYValueID"];
+		self.savedSpecifiers = (self.savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
+
+		for(PSSpecifier *specifier in _specifiers)
+
+			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]])
+
+				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
+
+	}
+
+	return _specifiers;
 
 }
 
 
 - (void)reloadSpecifiers {
 
-    [super reloadSpecifiers];
+	[super reloadSpecifiers];
 
-    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-1"]] boolValue]) {
+	if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-1"]] boolValue]) {
 
-        [self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:NO];
-        [self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:NO];
+		[self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:NO];
+		[self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:NO];
 
-    }
-
-
-    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-1"]]) {
-
-        [self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:NO];
-        [self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:NO];
-    
-    }
+	}
 
 
-    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-2"]] boolValue])
+	else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-1"]]) {
 
-        [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:NO];
-
-
-    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
-
-        [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:NO];
+		[self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:NO];
+		[self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:NO];
+	
+	}
 
 
-    if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-3"]] boolValue])
+	if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-2"]] boolValue])
 
-        [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:NO];
+		[self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:NO];
 
 
-    else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
+	else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
 
-        [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:NO];
+		[self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:NO];
+
+
+	if (![[self readPreferenceValue:[self specifierForID:@"SWITCH_ID-3"]] boolValue])
+
+		[self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:NO];
+
+
+	else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
+
+		[self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:NO];
 
 
 }
@@ -76,232 +78,272 @@ return _specifiers;
 
 - (void)viewDidLoad {
 
-    [super viewDidLoad];
-    [self reloadSpecifiers];
+	[super viewDidLoad];
+	[self reloadSpecifiers];
 
-    UIImage *banner = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/pogbanner.png"];
+	UIImage *banner = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/Assets/ARHotAfBanner.png"];
 	
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * banner.size.height / banner.size.width)];
-    self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,200,200)];
-    self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.headerImageView.image = banner;
-    self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.width * banner.size.height / banner.size.width)];
+	self.headerImageView = [UIImageView new];
+	self.headerImageView.image = banner;
+	self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+	self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    self.navigationItem.titleView = [UIView new];
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"4.0.1";
-    if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark) self.titleLabel.textColor = [UIColor whiteColor];
-    else if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight) self.titleLabel.textColor = [UIColor blackColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.navigationItem.titleView addSubview:self.titleLabel];
 
-    self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,10)];
-    self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-    self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/icon@2x.png"];
-    self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.iconView.alpha = 0.0;
-    [self.navigationItem.titleView addSubview:self.iconView];
-    
+	UIButton *changelogButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+	changelogButton.frame = CGRectMake(0,0,30,30);
+	changelogButton.tintColor = [UIColor colorWithRed: 0.02 green: 0.79 blue: 0.95 alpha: 1.00];
+	changelogButton.layer.cornerRadius = changelogButton.frame.size.height / 2;
+	changelogButton.layer.masksToBounds = YES;
+	[changelogButton setImage:[UIImage systemImageNamed:@"atom"] forState:UIControlStateNormal];
+	[changelogButton addTarget:self action:@selector(showWtfChangedInThisVersion:) forControlEvents:UIControlEventTouchUpInside];
 
-    [self.headerView addSubview:self.headerImageView];
+	changelogButtonItem = [[UIBarButtonItem alloc] initWithCustomView:changelogButton];
+	self.navigationItem.rightBarButtonItem = changelogButtonItem;
 
-    [NSLayoutConstraint activateConstraints:@[
+	self.navigationItem.titleView = [UIView new];
+	self.titleLabel = [UILabel new];
+	self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+	self.titleLabel.text = @"4.0.2";
+	self.titleLabel.textAlignment = NSTextAlignmentCenter;
+	self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	if([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark) self.titleLabel.textColor = UIColor.whiteColor;
+	else if([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight) self.titleLabel.textColor = UIColor.blackColor;
+	[self.navigationItem.titleView addSubview:self.titleLabel];
 
-        [self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
-        [self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
-        [self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],   
-        [self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-        [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-        [self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-        [self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-        [self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-        [self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+	self.iconView = [UIImageView new];
+	self.iconView.alpha = 0;
+	self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/icon@2x.png"];
+	self.iconView.contentMode = UIViewContentModeScaleAspectFit;
+	self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.navigationItem.titleView addSubview:self.iconView];
 
-    ]];
+	[self.headerView addSubview:self.headerImageView];
+
+	[NSLayoutConstraint activateConstraints:@[
+
+		[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
+		[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
+		[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],   
+		[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
+		[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+		[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+		[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+		[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+		[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+
+	]];
 
 }
 
 
+- (void)showWtfChangedInThisVersion:(id)sender {
+
+	AudioServicesPlaySystemSound(1521);
+
+	self.changelogController = [[OBWelcomeController alloc] initWithTitle:@"Arizona" detailText:@"4.0.2" icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/ArizonaPrefs.bundle/Assets/ArizonaHotIcon.png"]];
+
+	[self.changelogController addBulletedListItemWithTitle:@"Code" description:@"Code clean up. Doesn't affect functionality." image:[UIImage systemImageNamed:@"checkmark.circle.fill"]];
+
+	[self.changelogController addBulletedListItemWithTitle:@"Preferences" description:@"Added this pretty changelog view & updated contributors and package links." image:[UIImage systemImageNamed:@"checkmark.circle.fill"]];
+
+	_UIBackdropViewSettings *settings = [_UIBackdropViewSettings settingsForStyle:2];
+
+	_UIBackdropView *backdropView = [[_UIBackdropView alloc] initWithSettings:settings];
+	backdropView.clipsToBounds = YES;
+	backdropView.layer.masksToBounds = YES;
+	backdropView.translatesAutoresizingMaskIntoConstraints = NO;	
+	[self.changelogController.viewIfLoaded insertSubview:backdropView atIndex:0];
+
+	[backdropView.bottomAnchor constraintEqualToAnchor:self.changelogController.viewIfLoaded.bottomAnchor].active = YES;
+	[backdropView.leadingAnchor constraintEqualToAnchor:self.changelogController.viewIfLoaded.leadingAnchor].active = YES;
+	[backdropView.trailingAnchor constraintEqualToAnchor:self.changelogController.viewIfLoaded.trailingAnchor].active = YES;
+	[backdropView.topAnchor constraintEqualToAnchor:self.changelogController.viewIfLoaded.topAnchor].active = YES;
+
+	self.changelogController.view.tintColor = [UIColor colorWithRed: 0.02 green: 0.79 blue: 0.95 alpha: 1.00];
+	self.changelogController.modalInPresentation = NO;
+	self.changelogController.modalPresentationStyle = UIModalPresentationPageSheet;
+	self.changelogController.viewIfLoaded.backgroundColor = UIColor.clearColor;
+	[self presentViewController:self.changelogController animated:YES completion:nil];
+
+}
+
+
+- (void)dismissVC {
+
+	[self.changelogController dismissViewControllerAnimated:YES completion:nil];
+
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
 
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 
-    CGRect frame = self.table.bounds;
-    frame.origin.y = -frame.size.height;
+	CGRect frame = self.table.bounds;
+	frame.origin.y = -frame.size.height;
 
-    [self.navigationController.navigationController.navigationBar setShadowImage: [UIImage new]];
-    self.navigationController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+	[self.navigationController.navigationController.navigationBar setShadowImage: [UIImage new]];
+	self.navigationController.navigationController.navigationBar.tintColor = UIColor.whiteColor;
 
 }
 
  
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView.tableHeaderView = self.headerView;
-    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
+	tableView.tableHeaderView = self.headerView;
+	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
 }
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
-    CGFloat offsetY = scrollView.contentOffset.y;
+	CGFloat offsetY = scrollView.contentOffset.y;
 
-    if (offsetY > 150) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.iconView.alpha = 1.0;
-            self.titleLabel.alpha = 0.0;
-        }];
-    } else {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.iconView.alpha = 0.0;
-            self.titleLabel.alpha = 1.0;
-        }];
-    }
+	if (offsetY > 150) {
+		[UIView animateWithDuration:0.2 animations:^{
+			self.iconView.alpha = 1.0;
+			self.titleLabel.alpha = 0.0;
+		}];
+	} else {
+		[UIView animateWithDuration:0.2 animations:^{
+			self.iconView.alpha = 0.0;
+			self.titleLabel.alpha = 1.0;
+		}];
+	}
 
-    if (offsetY > 0) offsetY = 0;
-    self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
+	if (offsetY > 0) offsetY = 0;
+	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated {
 
-    [super viewWillDisappear:animated];
+	[super viewWillDisappear:animated];
 
   
-    if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark)
+	if([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark)
 
-        [self.navigationController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+		[self.navigationController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 
-    else if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight)
+	else if([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleLight)
 
-        [self.navigationController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];	
+		[self.navigationController.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];	
 
 }
 
 
 - (id)readPreferenceValue:(PSSpecifier*)specifier {
-    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
-    return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+
 }
 
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
 
-    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
-    [settings setObject:value forKey:specifier.properties[@"key"]];
-    [settings writeToFile:plistPath atomically:YES];
-    
-    [NSDistributedNotificationCenter.defaultCenter postNotificationName:@"glyphUpdated" object:NULL];
-    
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:plistPath]];
+	[settings setObject:value forKey:specifier.properties[@"key"]];
+	[settings writeToFile:plistPath atomically:YES];
+	
+	[NSDistributedNotificationCenter.defaultCenter postNotificationName:@"glyphUpdated" object:nil];
+	
 
-    NSString *key = [specifier propertyForKey:@"key"];
+	NSString *key = [specifier propertyForKey:@"key"];
 
-    if([key isEqualToString:@"yes"]) {
-        
+	if([key isEqualToString:@"yes"]) {
+		
 
-        if (![value boolValue]) {
+		if (![value boolValue]) {
 
-            [self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:YES];
-            [self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:YES];
+			[self removeSpecifier:self.savedSpecifiers[@"GroupCell-1"] animated:YES];
+			[self removeSpecifier:self.savedSpecifiers[@"SegmentCell"] animated:YES];
 
-        }
-
-
-        else if (![self containsSpecifier:self.savedSpecifiers[@"SegmentCell"]]) {
-
-            [self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:YES];
-            [self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:YES];
-
-        }
-
-    }
+		}
 
 
-    if([key isEqualToString:@"alternatePosition"]) {
-    
+		else if (![self containsSpecifier:self.savedSpecifiers[@"SegmentCell"]]) {
 
-        if (![value boolValue])
+			[self insertSpecifier:self.savedSpecifiers[@"GroupCell-1"] afterSpecifierID:@"SWITCH_ID-1" animated:YES];
+			[self insertSpecifier:self.savedSpecifiers[@"SegmentCell"] afterSpecifierID:@"GroupCell-1" animated:YES];
 
-            [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:YES];
+		}
 
-
-        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
-
-            [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:YES];
-
-    }
+	}
 
 
-    if([key isEqualToString:@"lockGlyphPosition"]) {
-    
+	if([key isEqualToString:@"alternatePosition"]) {
+	
 
-        if (![value boolValue])
+		if (![value boolValue])
 
-            [self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:YES];
+			[self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] animated:YES];
+
+
+		else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-3"]])
+
+			[self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-3"], self.savedSpecifiers[@"XAxisID"], self.savedSpecifiers[@"XValueID"], self.savedSpecifiers[@"YAxisID"], self.savedSpecifiers[@"YValueID"]] afterSpecifierID:@"SWITCH_ID-2" animated:YES];
+
+	}
+
+
+	if([key isEqualToString:@"lockGlyphPosition"]) {
+	
+
+		if (![value boolValue])
+
+			[self removeContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] animated:YES];
  
 
-        else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
+		else if (![self containsSpecifier:self.savedSpecifiers[@"GroupCell-4"]])
 
-            [self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:YES];
-    }
+			[self insertContiguousSpecifiers:@[self.savedSpecifiers[@"GroupCell-4"], self.savedSpecifiers[@"LockXAxis"], self.savedSpecifiers[@"LockXValueID"], self.savedSpecifiers[@"LockYAxis"], self.savedSpecifiers[@"LockYValueID"]] afterSpecifierID:@"SWITCH_ID-3" animated:YES];
+	}
 
 }
 
 
 @end
-
-
 
 
 @implementation ArizonaContributorsRootListController
 
 
 - (NSArray *)specifiers {
-	if (!_specifiers) {
-		_specifiers = [self loadSpecifiersFromPlistName:@"AriContributors" target:self];
-	}
+
+	if(!_specifiers) _specifiers = [self loadSpecifiersFromPlistName:@"AriContributors" target:self];
 
 	return _specifiers;
+
 }
 
 
 @end
 
 
-
-
 @implementation OtherLinksRootListController
 
 
 - (NSArray *)specifiers {
-	if (!_specifiers) {
-		_specifiers = [self loadSpecifiersFromPlistName:@"Other Links" target:self];
-	}
+
+	if(!_specifiers) _specifiers = [self loadSpecifiersFromPlistName:@"Other Links" target:self];
 
 	return _specifiers;
+
 }
 
 
 - (void)discord {
 
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://discord.gg/jbE3avwSHs"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)paypal {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://paypal.me/Luki120"] options:@{} completionHandler:nil];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://discord.gg/jbE3avwSHs"] options:@{} completionHandler:nil];
 
 
 }
@@ -310,7 +352,25 @@ return _specifiers;
 - (void)github {
 
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/Luki120/Arizona"] options:@{} completionHandler:nil];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/Luki120/Arizona"] options:@{} completionHandler:nil];
+
+
+}
+
+
+- (void)paypal {
+
+
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://paypal.me/Luki120"] options:@{} completionHandler:nil];
+
+
+}
+
+
+- (void)amelija {
+
+
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://repo.twickd.com/get/me.luki.amelija"] options:@{} completionHandler:nil];
 
 
 }
@@ -328,16 +388,7 @@ return _specifiers;
 - (void)meredith {
 
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://repo.twickd.com/get/com.twickd.luki120.meredith"] options:@{} completionHandler:nil];
-
-
-}
-
-
-- (void)perfectSpotify {
-
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://repo.twickd.com/get/com.twickd.luki120.perfectspotify"] options:@{} completionHandler:nil];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://repo.twickd.com/get/com.twickd.luki120.meredith"] options:@{} completionHandler:nil];
 
 
 }
@@ -346,28 +397,30 @@ return _specifiers;
 @end
 
 
-
-
 @implementation ArizonaTableCell
 
 
 - (void)tintColorDidChange {
 
-    [super tintColorDidChange];
+	[super tintColorDidChange];
 
-    self.textLabel.textColor = tint;
-    self.textLabel.highlightedTextColor = tint;
+	self.textLabel.textColor = tint;
+	self.textLabel.highlightedTextColor = tint;
+
 }
 
 
 - (void)refreshCellContentsWithSpecifier:(PSSpecifier *)specifier {
 
-    [super refreshCellContentsWithSpecifier:specifier];
+	[super refreshCellContentsWithSpecifier:specifier];
 
-    if ([self respondsToSelector:@selector(tintColor)]) {
-        self.textLabel.textColor = tint;
-        self.textLabel.highlightedTextColor = tint;
-    }
+	if([self respondsToSelector:@selector(tintColor)]) {
+		
+		self.textLabel.textColor = tint;
+		self.textLabel.highlightedTextColor = tint;
+	
+	}
+
 }
 
 
