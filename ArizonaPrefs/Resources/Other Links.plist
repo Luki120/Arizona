@@ -18,11 +18,11 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
+			<string>me.luki.arizonaprefs</string>
 			<key>action</key>
-			<string>discord</string>
+			<string>github</string>
 			<key>label</key>
-			<string>Chat With Us On Discord</string>
+			<string>Source Code 🔥</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -32,7 +32,7 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
+			<string>me.luki.arizonaprefs</string>
 			<key>action</key>
 			<string>paypal</string>
 			<key>label</key>
@@ -46,11 +46,11 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
+			<string>me.luki.arizonaprefs</string>
 			<key>action</key>
-			<string>github</string>
+			<string>discord</string>
 			<key>label</key>
-			<string>Source Code 🔥</string>
+			<string>Chat With Us On Discord</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -66,11 +66,29 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
+			<string>me.luki.arizonaprefs</string>
+			<key>action</key>
+			<string>amelija</string>
+			<key>label</key>
+			<string>Amēlija</string>
+			<key>icon</key>
+			<string>Assets/Amēlija@2x.png</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>ArizonaTableCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>me.luki.arizonaprefs</string>
 			<key>action</key>
 			<string>april</string>
 			<key>label</key>
 			<string>April</string>
+			<key>icon</key>
+			<string>Assets/April@2x.png</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -80,25 +98,13 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
+			<string>me.luki.arizonaprefs</string>
 			<key>action</key>
 			<string>meredith</string>
 			<key>label</key>
 			<string>Meredith</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>cellClass</key>
-			<string>ArizonaTableCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.luki.arizonaprefs</string>
-			<key>action</key>
-			<string>perfectSpotify</string>
-			<key>label</key>
-			<string>PerfectSpotify</string>
+			<key>icon</key>
+			<string>Assets/Meredith@2x.png</string>
 		</dict>
 		<dict>
 			<key>cell</key>
