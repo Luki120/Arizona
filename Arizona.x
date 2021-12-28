@@ -1,4 +1,4 @@
-@import UIKit;
+#import "Constants.h"
 
 
 @interface SBFLockScreenDateView : UIView
@@ -11,42 +11,32 @@
 
 
 @interface NSDistributedNotificationCenter : NSNotificationCenter
-+ (instancetype)defaultCenter;
-- (void)postNotificationName:(NSString *)name object:(NSString *)object userInfo:(NSDictionary *)userInfo;
 @end
 
 
-static NSString *plistPath = @"/var/mobile/Library/Preferences/me.luki.arizonaprefs.plist";
-
 static BOOL yes;
-static int style;
+static int position;
 
 static BOOL alternatePosition;
 static BOOL lockGlyphPosition;
 
-
-CGFloat coordinatesForX;
-CGFloat coordinatesForY;
-CGFloat lockCoordinatesForX;
-CGFloat lockCoordinatesForY;
-
+static float coordinatesForX;
+static float coordinatesForY;
+static float lockCoordinatesForX;
+static float lockCoordinatesForY;
 
 static void loadWithoutAFuckingRespring() {
 
-
-	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: kPath];
 	NSMutableDictionary *prefs = dict ? [dict mutableCopy] : [NSMutableDictionary dictionary];
 	yes = prefs[@"yes"] ? [prefs[@"yes"] boolValue] : NO;
-	style = prefs[@"style"] ? [prefs[@"style"] integerValue] : 2;
+	position = prefs[@"position"] ? [prefs[@"position"] integerValue] : 2;
 	alternatePosition = prefs[@"alternatePosition"] ? [prefs[@"alternatePosition"] boolValue] : NO;
 	lockGlyphPosition = prefs[@"lockGlyphPosition"] ? [prefs[@"lockGlyphPosition"] boolValue] : NO;
-	int xValue = prefs[@"xValue"] ? [prefs[@"xValue"] intValue] : 1;
-	coordinatesForX = (float)xValue;
-	int yValue = prefs[@"yValue"] ? [prefs[@"yValue"] intValue] : 1;
-	coordinatesForY = (float)yValue;
-	lockCoordinatesForX = prefs[@"lockXValue"] ? [prefs[@"lockXValue"] intValue] : 1;
-	lockCoordinatesForY = prefs[@"lockYValue"] ? [prefs[@"lockYValue"] intValue] : 1;
-
+	coordinatesForX = prefs[@"coordinatesForX"] ? [prefs[@"coordinatesForX"] floatValue] : 0;
+	coordinatesForY = prefs[@"coordinatesForY"] ? [prefs[@"coordinatesForY"] floatValue] : 0;
+	lockCoordinatesForX = prefs[@"lockXValue"] ? [prefs[@"lockXValue"] floatValue] : 0;
+	lockCoordinatesForY = prefs[@"lockYValue"] ? [prefs[@"lockYValue"] floatValue] : 0;
 
 }
 
@@ -59,18 +49,17 @@ static void loadWithoutAFuckingRespring() {
 
 - (void)setAlignmentPercent:(double)arg1 { // fixed positions
 
-
 	%orig;
 
 	loadWithoutAFuckingRespring();
 
 	if(yes)
 
-		switch(style) {
+		switch(position) {
 
 			case 0:
 		
-				%orig(1); // right
+				%orig(-1); // left
 				break;
 
 			case 1:
@@ -80,20 +69,18 @@ static void loadWithoutAFuckingRespring() {
 
 			case 2:
 
-				%orig(-1); // left
+				%orig(1); // right
 				break;
 
 		}
-
 
 }
 
 
 - (void)setFrame:(CGRect)frame { // custom position
 
-
 	%orig;
-	
+
 	loadWithoutAFuckingRespring();
 
 	if(alternatePosition) {
@@ -104,14 +91,11 @@ static void loadWithoutAFuckingRespring() {
 
 	}
 
-
 }
 
 
 %end
 %end
-
-
 
 
 %group ArizonaLockGlyph
@@ -119,27 +103,20 @@ static void loadWithoutAFuckingRespring() {
 
 %hook SBUIProudLockIconView
 
-
 %new
-
 
 - (void)updateLockGlyphPosition { // self explanatory
 
-
 	loadWithoutAFuckingRespring();
 
-	if(lockGlyphPosition) {
-		
-		self.frame = CGRectMake(lockCoordinatesForX, lockCoordinatesForY, self.frame.size.width, self.frame.size.height);
-	
-	} else self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+	if(lockGlyphPosition) self.frame = CGRectMake(lockCoordinatesForX, lockCoordinatesForY, self.frame.size.width, self.frame.size.height);
 
+	else self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 
 }
 
 
 - (void)didMoveToSuperview { // add notification observers && call the function we need
-
 
 	%orig;
 
@@ -148,17 +125,14 @@ static void loadWithoutAFuckingRespring() {
 	[NSDistributedNotificationCenter.defaultCenter removeObserver:self];
 	[NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(updateLockGlyphPosition) name:@"glyphUpdated" object:nil];
 
-
 }
 
 
 - (void)layoutSubviews { // I don't like this either, but just updating a view.
 
-
 	%orig;
 
 	[self updateLockGlyphPosition];
-
 
 }
 
@@ -167,18 +141,14 @@ static void loadWithoutAFuckingRespring() {
 %end
 
 
-
-
 %ctor {
-
 
 	loadWithoutAFuckingRespring();
 
 	%init(Arizona);
 
-	if(![[NSFileManager defaultManager] fileExistsAtPath:@"Library/MobileSubstrate/DynamicLibraries/LatchKey.dylib"])
+	if(![[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/LatchKey.dylib"])
 
 		%init(ArizonaLockGlyph);
-
 
 }
