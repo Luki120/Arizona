@@ -16,9 +16,9 @@
 				<key>secondLabel</key>
 				<string>Ben</string>
 				<key>secondAccount</key>
-				<string>BenOwl3</string>
+				<string>Ben216k</string>
 				<key>secondURL</key>
-				<string>https://pbs.twimg.com/profile_images/1388934413103161345/et7cnoR1_400x400.jpg</string>
+				<string>https://avatars.githubusercontent.com/u/91443760?v=4</string>
 			</dict>
 			<dict>
 				<key>cell</key>
@@ -54,7 +54,7 @@
 				<key>default</key>
 				<string>2</string>
 				<key>key</key>
-				<string>style</string>
+				<string>position</string>
 				<key>validValues</key>
 				<array>
 					<string>0</string>
@@ -63,9 +63,9 @@
 				</array>
 				<key>validTitles</key>
 				<array>
-					<string>Right</string>
-					<string>Center</string>
 					<string>Left</string>
+					<string>Center</string>
+					<string>Right</string>
 				</array>
 				<key>id</key>
 				<string>SegmentCell</string>
@@ -110,14 +110,12 @@
 				<key>defaults</key>
 				<string>me.luki.arizonaprefs</string>
 				<key>key</key>
-				<string>xValue</string>
+				<string>coordinatesForX</string>
 				<key>min</key>
 				<real>-500.0</real>
 				<key>max</key>
 				<real>500.0</real>
 				<key>showValue</key>
-				<true />
-				<key>isSegmented</key>
 				<true />
 				<key>id</key>
 				<string>XValueID</string>
@@ -138,14 +136,12 @@
 				<key>defaults</key>
 				<string>me.luki.arizonaprefs</string>
 				<key>key</key>
-				<string>yValue</string>
+				<string>coordinatesForY</string>
 				<key>min</key>
 				<real>-100</real>
 				<key>max</key>
 				<real>800</real>
 				<key>showValue</key>
-				<true />
-				<key>isSegmented</key>
 				<true />
 				<key>id</key>
 				<string>YValueID</string>
@@ -190,14 +186,12 @@
 				<key>defaults</key>
 				<string>me.luki.arizonaprefs</string>
 				<key>key</key>
-				<string>lockXValue</string>
+				<string>lockCoordinatesForX</string>
 				<key>min</key>
 				<real>-200.0</real>
 				<key>max</key>
 				<real>200.0</real>
 				<key>showValue</key>
-				<true />
-				<key>isSegmented</key>
 				<true />
 				<key>id</key>
 				<string>LockXValueID</string>
@@ -218,14 +212,12 @@
 				<key>defaults</key>
 				<string>me.luki.arizonaprefs</string>
 				<key>key</key>
-				<string>lockYValue</string>
+				<string>lockCoordinatesForY</string>
 				<key>min</key>
 				<real>0.0</real>
 				<key>max</key>
 				<real>800</real>
 				<key>showValue</key>
-				<true />
-				<key>isSegmented</key>
 				<true />
 				<key>id</key>
 				<string>LockYValueID</string>
@@ -236,11 +228,25 @@
 			</dict>
 			<dict>
 				<key>cell</key>
+				<string>PSButtonCell</string>
+				<key>cellClass</key>
+				<string>ArizonaTintCell</string>
+				<key>action</key>
+				<string>shatterThePrefsToPieces</string>
+				<key>label</key>
+				<string>Reset Preferences</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSGroupCell</string>
+			</dict>
+			<dict>
+				<key>cell</key>
 				<string>PSLinkCell</string>
 				<key>cellClass</key>
-				<string>ArizonaTableCell</string>
+				<string>ArizonaTintCell</string>
 				<key>detail</key>
-				<string>OtherLinksRootListController</string>
+				<string>ArizonaLinksVC</string>
 				<key>isController</key>
 				<true />
 				<key>label</key>
@@ -254,9 +260,9 @@
 				<key>cell</key>
 				<string>PSLinkCell</string>
 				<key>cellClass</key>
-				<string>ArizonaTableCell</string>
+				<string>ArizonaTintCell</string>
 				<key>detail</key>
-				<string>ArizonaContributorsRootListController</string>
+				<string>ArizonaContributorsVC</string>
 				<key>isController</key>
 				<true />
 				<key>label</key>

@@ -9,9 +9,9 @@
 		<key>cell</key>
 		<string>PSLinkCell</string>
 		<key>detail</key>
-		<string>ARIRootListController</string>
+		<string>ArizonaVC</string>
 		<key>icon</key>
-		<string>icon.png</string>
+		<string>Assets/Arizona.png</string>
 		<key>isController</key>
 		<true/>
 		<key>label</key>
